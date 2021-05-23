@@ -5,7 +5,12 @@ import base64
 import requests
 
 ReversoApiUrl = "https://voice.reverso.net/RestPronunciation.svc/v1/output=json/GetVoiceStream/voiceName={}" \
-                    "?inputText={}&voiceSpeed={}&mp3BitRate={}"
+                    "?&inputText={}&voiceSpeed={}&mp3BitRate={}"
+
+headers = {
+    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) '
+                  'Chrome/75.0.3770.142 Safari/537.36'
+    }
 
 VoiceName = {'Leila-Arabic': 'Leila22k', 'Mehdi-Arabic': 'Mehdi22k', 'Nizar-Arabic': 'Nizar22k',
              'Salma-Arabic': 'Salma22k', 'Lisa-Australian-English': 'Lisa22k',
@@ -65,6 +70,6 @@ class ReversoTTS(object):
         self._voice = self.get_voice(voice)
         try:
             url = ReversoApiUrl.format(self._voice, self.text_to_bash64(msg), pitch, bitrate)
-            return requests.get(url).content
+            return requests.get(url, headers=headers).content
         except Exception as e:
             return str(e)
