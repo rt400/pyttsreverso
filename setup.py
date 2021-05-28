@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup_args = dict(
     name='pyttsreverso',
-    version='0.3',
+    version='0.4',
     description='Useful tools to work with Resrervo TTS in Python',
     long_description_content_type="text/markdown",
     license='MIT',
